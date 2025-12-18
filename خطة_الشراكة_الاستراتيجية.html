@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خطة عمل الشراكة الاستراتيجية</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #212121;
+            background: linear-gradient(135deg, #f5f8fa 0%, #e8f0f7 100%);
+            direction: rtl;
+            text-align: right;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #ffffff;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #0066cc 0%, #003399 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-logos {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            direction: rtl;
+        }
+
+        .header-logo {
+            height: 60px;
+            max-width: 180px;
+            object-fit: contain;
+        }
+
+        .header-logo.mobily-white {
+            filter: brightness(0) invert(1);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            height: 80px;
+            max-width: 200px;
+            object-fit: contain;
+            opacity: 0.95;
+        }
+
+        .logo.business-partner {
+            filter: none;
+        }
+
+        .logo.mobily {
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.5em;
+            font-weight: 400;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .divider {
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #0066cc, transparent);
+            margin: 40px 0;
+            border-radius: 2px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-right: 5px solid #0066cc;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section.with-chart {
+            margin-bottom: 60px;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.15);
+        }
+
+        .section-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #003399;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #0066cc;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            right: 0;
+            width: 100px;
+            height: 3px;
+            background: #66ccff;
+        }
+
+        .section-content {
+            font-size: 1.2em;
+            line-height: 2;
+            color: #333;
+            text-align: justify;
+            text-align-last: right;
+        }
+
+        .list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .list-item {
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-right: 4px solid #0066cc;
+            border-radius: 8px;
+            font-size: 1.15em;
+            line-height: 1.8;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-right: 45px;
+        }
+
+        .list-item::before {
+            content: '▸';
+            position: absolute;
+            right: 15px;
+            color: #0066cc;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .list-item:hover {
+            background: #e8f0f7;
+            transform: translateX(-5px);
+            box-shadow: 0 4px 10px rgba(0, 102, 204, 0.1);
+        }
+
+        .list-item.sub-item {
+            margin-right: 30px;
+            background: #ffffff;
+            border-right-color: #66ccff;
+            font-size: 1.05em;
+        }
+
+        .list-item.sub-item::before {
+            content: '•';
+            color: #66ccff;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
+        }
+
+        .highlight-box p {
+            font-size: 1.3em;
+            line-height: 2;
+            font-weight: 500;
+        }
+
+        .quote-box {
+            background: #fff8e1;
+            border-right: 5px solid #ffc107;
+            padding: 25px 30px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-style: italic;
+            font-size: 1.2em;
+            color: #5d4037;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            margin-top: 60px;
+            background: linear-gradient(135deg, #003399 0%, #0066cc 100%);
+            color: white;
+            border-radius: 15px;
+        }
+
+        .footer p {
+            font-size: 1.3em;
+            line-height: 2;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header .subtitle {
+                font-size: 1.2em;
+            }
+
+            .section {
+                padding: 25px;
+            }
+
+            .section-title {
+                font-size: 1.8em;
+            }
+
+            .section-content {
+                font-size: 1.1em;
+            }
+
+            .logos {
+                gap: 20px;
+            }
+
+            .logo {
+                height: 60px;
+            }
+        }
+
+        .emphasis {
+            color: #0066cc;
+            font-weight: 700;
+        }
+
+        .page-break {
+            display: none;
+        }
+
+        .page-logos {
+            display: none;
+        }
+
+        .org-chart {
+            margin: 40px 0;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            direction: rtl;
+        }
+
+        .org-chart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .org-level {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .org-node {
+            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 200px;
+            box-shadow: 0 4px 10px rgba(0, 102, 204, 0.3);
+            position: relative;
+        }
+
+        .org-node.level-1 {
+            background: linear-gradient(135deg, #003399 0%, #0066cc 100%);
+            padding: 30px 50px;
+            font-size: 1.4em;
+            font-weight: 700;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 6px 20px rgba(0, 51, 153, 0.4);
+        }
+
+        .org-node.level-2 {
+            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+            padding: 22px 35px;
+            font-size: 1.2em;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.35);
+        }
+
+        .org-node.level-3 {
+            background: linear-gradient(135deg, #004499 0%, #0066cc 100%);
+            padding: 18px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 68, 153, 0.3);
+        }
+
+        .org-node.level-4 {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            padding: 16px 25px;
+            font-size: 1em;
+            font-weight: 500;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.35);
+            min-width: 220px;
+        }
+
+        .org-node-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .org-node-subtitle {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .org-connector {
+            width: 2px;
+            height: 35px;
+            background: #0066cc;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .org-connector-vertical {
+            width: 2px;
+            height: 35px;
+            background: #0066cc;
+            margin: 0 auto;
+        }
+
+        .org-connector-horizontal {
+            height: 2px;
+            background: #0066cc;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .org-branch {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        .org-branch-container {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+        }
+
+
+        .org-node {
+            position: relative;
+            z-index: 2;
+        }
+
+        .chart-container {
+            margin: 40px 0;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            height: 400px;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 350px;
+            margin-top: 20px;
+        }
+
+        .chart-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #003399;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 102, 204, 0.2);
+        }
+
+        .stat-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .stat-card .value {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-card .growth {
+            font-size: 1em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .stat-card.growth-positive {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+                box-shadow: none;
+            }
+
+            .header {
+                page-break-after: always;
+                page-break-inside: avoid;
+                margin-bottom: 0;
+                padding: 40px 30px;
+                margin-top: 70px;
+            }
+
+            .header-logos {
+                margin-bottom: 20px;
+            }
+
+            .section {
+                page-break-after: always;
+                page-break-inside: avoid;
+                margin-bottom: 0;
+                padding: 20px 15px;
+                border-radius: 0;
+                box-shadow: none;
+                min-height: fit-content;
+            }
+
+            .section:last-of-type {
+                page-break-after: auto;
+            }
+
+            .footer {
+                page-break-before: always;
+                page-break-inside: avoid;
+                margin-top: 0;
+            }
+
+            .divider {
+                display: none;
+            }
+
+            .section:hover {
+                transform: none;
+                box-shadow: none;
+            }
+
+            .list-item:hover {
+                transform: none;
+                box-shadow: none;
+            }
+
+            .section.with-chart {
+                page-break-after: always;
+                page-break-inside: avoid;
+                margin-bottom: 0;
+                padding-bottom: 40px;
+            }
+
+            .chart-container {
+                page-break-inside: avoid;
+                page-break-before: avoid;
+                height: auto;
+                min-height: auto;
+                margin-bottom: 15px;
+                padding: 20px;
+            }
+
+            .chart-wrapper {
+                height: 350px;
+                page-break-inside: avoid;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+                page-break-inside: avoid;
+                margin-top: 20px;
+            }
+
+            .section-title {
+                font-size: 1.8em;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+            }
+
+            .section-content {
+                font-size: 1em;
+                line-height: 1.6;
+            }
+
+            .list-item {
+                font-size: 1em;
+                padding: 12px 15px;
+                margin-bottom: 10px;
+            }
+
+            .section.with-chart + .section {
+                page-break-before: always;
+            }
+
+            .commission-section {
+                page-break-before: always;
+            }
+
+            .page-break {
+                display: block;
+                page-break-after: always;
+                height: 100vh;
+                width: 100%;
+            }
+
+            .highlight-box {
+                padding: 20px;
+                margin: 20px 0;
+            }
+
+            .highlight-box p {
+                font-size: 1.1em;
+                line-height: 1.6;
+            }
+
+            .quote-box {
+                padding: 15px 20px;
+                margin: 15px 0;
+                font-size: 1em;
+            }
+
+            .footer {
+                padding: 30px;
+            }
+
+            .footer p {
+                font-size: 1.2em;
+            }
+
+            @page {
+                margin: 2cm 1.5cm 1.5cm 1.5cm;
+                size: A4 landscape;
+            }
+
+            .page-logos {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                padding: 10px 30px;
+                background: linear-gradient(135deg, #0066cc 0%, #003399 100%);
+                z-index: 1000;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+                direction: rtl;
+            }
+
+            .page-logo {
+                height: 50px;
+                max-width: 150px;
+                object-fit: contain;
+            }
+
+            .page-logo.left {
+                filter: brightness(0) invert(1);
+            }
+
+            .section {
+                margin-top: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-logos">
+        <img src="Business Partner Logo.png" alt="Business Partners Logo" class="page-logo">
+        <img src="Mobily Logo.png" alt="Mobily Logo" class="page-logo left">
+    </div>
+    <div class="container">
+        <div class="header">
+            <div class="header-logos">
+                <img src="Business Partner Logo.png" alt="Business Partners Logo" class="header-logo">
+                <img src="Mobily Logo.png" alt="Mobily Logo" class="header-logo mobily-white">
+            </div>
+            <h1>خطة عمل الشراكة الاستراتيجية</h1>
+            <div class="subtitle">بين شركة شركاء الاعمال وشركة موبايلي<br>خطة التوسع في قطاع الأعمال – عام 2026</div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">أولاً: نبذة عن الشراكة</h2>
+            <div class="section-content">
+                <p>شراكة استراتيجية قوية بين شركة شركاء الاعمال وشركة موبايلي تهدف إلى التوسع في قطاع الأعمال وتعزيز حضور موبايلي في السوق.</p>
+            </div>
+        </div>
+
+        <div class="section with-chart">
+            <h2 class="section-title">ثانيًا: أداء الشريك خلال السنوات الماضية</h2>
+            <div class="section-content">
+                <p>حقق الشريك خلال الأعوام السابقة أداءً تصاعديًا يعكس قوة الشراكة وكفاءة فرق العمل، حيث تم:</p>
+                
+                <div class="chart-container">
+                    <h3 class="chart-title">معدل نمو المبيعات السنوي</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>2023</h3>
+                            <div class="value">363,548</div>
+                            <div class="growth">القيمة الأساسية</div>
+                        </div>
+                        <div class="stat-card growth-positive">
+                            <h3>2024</h3>
+                            <div class="value">785,086</div>
+                            <div class="growth">نمو 115.9%</div>
+                        </div>
+                        <div class="stat-card growth-positive">
+                            <h3>2025</h3>
+                            <div class="value">1,836,688</div>
+                            <div class="growth">نمو 134.0%</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>الإجمالي</h3>
+                            <div class="value">3,270,496</div>
+                            <div class="growth">مجموع 3 سنوات</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+        <div class="section">
+            <h2 class="section-title">ثالثًا: إنجازات عام 2025</h2>
+            <div class="section-content">
+                <p>شهد عام 2025 نجاحًا ملحوظًا في الأداء البيعي، تمثل في:</p>
+                <ul class="list">
+                    <li class="list-item">تحقيق مستهدفات المبيعات المعتمدة من موبايلي بنسبة مرتفعة.</li>
+                    <li class="list-item">زيادة قاعدة العملاء في قطاع الشركات والمؤسسات.</li>
+                    <li class="list-item">تحسين جودة التعاقدات ورفع متوسط قيمة الصفقة.</li>
+                    <li class="list-item">المساهمة المباشرة في تعزيز حصة موبايلي السوقية في قطاع الأعمال.</li>
+                </ul>
+                <div class="quote-box">
+                    ويؤكد هذا النجاح جاهزية الشريك للانتقال إلى مرحلة توسع أكبر خلال عام 2026.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">رابعًا: خطة التوسع والاستثمار في الهيكلة لعام 2026</h2>
+            <div class="section-content">
+                <p>انطلاقًا من ثقتنا في نمو السوق وإمكانات الشراكة، نخطط لتنفيذ توسع استثماري شامل يشمل:</p>
+                <ul class="list">
+                    <li class="list-item">زيادة عدد ممثلي المبيعات إلى <span class="emphasis">40 ممثل مبيعات</span> متخصصين في قطاع الأعمال بانتشار كامل لجميع انحاء المملكة</li>
+                    <li class="list-item">إنشاء هيكل تنظيمي واضح يشمل:
+                        <ul class="list" style="margin-top: 15px;">
+                            <li class="list-item sub-item">مدراء مبيعات إقليميين.</li>
+                            <li class="list-item sub-item">فرق مبيعات ميدانية مخصصة.</li>
+                            <li class="list-item sub-item">فرق دعم ومتابعة ما بعد البيع.</li>
+                        </ul>
+                    </li>
+                    <li class="list-item">الاستثمار في التدريب والتأهيل المستمر لضمان أعلى مستوى من الاحترافية في تمثيل موبايلي.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">هيكل قطاع الأعمال (2026)</h2>
+            <div class="section-content">
+                <div class="org-chart">
+                    <div class="org-chart-container">
+                        <!-- Level 1: مدير عام -->
+                        <div class="org-branch">
+                            <div class="org-node level-1">
+                                <div class="org-node-title">مدير عام قطاع الأعمال</div>
+                            </div>
+                            <div class="org-connector"></div>
+                            
+                            <!-- Level 2: مديري المشاريع -->
+                            <div class="org-branch-container">
+                                <!-- Project Manager 1 -->
+                                <div class="org-branch">
+                                    <div class="org-node level-2">
+                                        <div class="org-node-title">مدير مشروع 1</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Project Manager 2 -->
+                                <div class="org-branch">
+                                    <div class="org-node level-2">
+                                        <div class="org-node-title">مدير مشروع 2</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Level 3: Sales Managers (مستوى منفصل تحت مديري المشاريع) -->
+                            <div class="org-connector-vertical" style="margin-top: 20px;"></div>
+                            <div class="org-branch-container" style="margin-top: 20px;">
+                                <div class="org-branch">
+                                    <div class="org-node level-3">
+                                        <div class="org-node-title">مدير مبيعات 1</div>
+                                    </div>
+                                    <div class="org-connector-vertical"></div>
+                                    <div class="org-node level-4">
+                                        <div class="org-node-title">20 مندوب مبيعات</div>
+                                        <div class="org-node-subtitle">المنطقة الوسطة والشرقية</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="org-branch">
+                                    <div class="org-node level-3">
+                                        <div class="org-node-title">مدير مبيعات 2</div>
+                                    </div>
+                                    <div class="org-connector-vertical"></div>
+                                    <div class="org-node level-4">
+                                        <div class="org-node-title">15 مندوب مبيعات</div>
+                                        <div class="org-node-subtitle">المنطقة الغربية والجنوبية</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <div class="section with-chart">
+            <h2 class="section-title">المبيعات المستهدفة للعامين القادمين</h2>
+            <div class="section-content">
+                <p>في إطار خطة التوسع والاستثمار، نستهدف تحقيق معدلات نمو متصاعدة في المبيعات خلال العامين القادمين:</p>
+                
+                <div class="chart-container">
+                    <h3 class="chart-title">المبيعات المستهدفة 2026 - 2027</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="targetSalesChart"></canvas>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>2026</h3>
+                            <div class="value">4,000,000</div>
+                            <div class="growth">المستهدف</div>
+                        </div>
+                        <div class="stat-card growth-positive">
+                            <h3>2027</h3>
+                            <div class="value">5,000,000</div>
+                            <div class="growth">نمو 25%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+        <div class="section commission-section">
+            <h2 class="section-title">خامسًا: العمولة ونموذج التحفيز</h2>
+            <div class="section-content">
+                <p>نظرًا لحجم الاستثمار والتوسع المخطط له، يتطلع الشريك إلى:</p>
+                <ul class="list">
+                    <li class="list-item">تحقيق أعلى نسبة عمولة مقترحة من موبايلي بما يتناسب مع حجم المبيعات المستهدف.</li>
+                </ul>
+                <p style="margin-top: 20px;">ويُعد نموذج العمولة المقترح منكم عنصرًا رئيسيًا لضمان استدامة التوسع وتحفيز الفرق البيعية لتحقيق نتائج استثنائية.</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <h2 class="section-title">سادسًا: الأهداف الاستراتيجية لعام 2026</h2>
+            <div class="section-content">
+                <div class="highlight-box">
+                    <p>هدفنا الرئيسي في عام 2026 هو:</p>
+                    <p style="margin-top: 15px; font-weight: 700; font-size: 1.4em;">أن نكون الشريك الأفضل والأكثر تأثيرًا في تمثيل موبايلي بقطاع الأعمال على مستوى المملكة.</p>
+                </div>
+                <p style="margin-top: 30px;">ويتفرع عن هذا الهدف:</p>
+                <ul class="list">
+                    <li class="list-item">تحقيق أعلى معدلات نمو في المبيعات.</li>
+                    <li class="list-item">الالتزام بأعلى معايير الجودة التشغيلية.</li>
+                    <li class="list-item">تعزيز صورة موبايلي كشريك اتصالات موثوق لقطاع الأعمال.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <h2 class="section-title">سابعًا: خطة التوسع التفصيلية في المبيعات</h2>
+            <div class="section-content">
+                <p>لدينا خطة عمل تفصيلية للتوسع الكبير في المبيعات تشمل:</p>
+                <ul class="list">
+                    <li class="list-item">استهداف الشركات المتوسطة والصغيرة متعددة الفروع.</li>
+                    <li class="list-item">التوسع الجغرافي المدروس لزيادة التغطية.</li>
+                    <li class="list-item">خطة مخصصة للعمل على عملاء <span class="emphasis">MNP (نقل الأرقام)</span> تشمل:
+                        <ul class="list" style="margin-top: 15px;">
+                            <li class="list-item sub-item">فرق متخصصة لاستهداف شركات الاتصالات المنافسة.</li>
+                            <li class="list-item sub-item">عروض وحلول متكاملة لرفع نسب التحويل.</li>
+                            <li class="list-item sub-item">متابعة دقيقة لضمان نجاح عمليات النقل واستمرارية العميل.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <h2 class="section-title">ثامنًا: الخاتمة</h2>
+            <div class="section-content">
+                <p>تعكس هذه الخطة التزام الشريك الكامل بالاستثمار والنمو طويل المدى مع شركة موبايلي، بما يحقق أهداف الطرفين ويعزز من ريادة موبايلي في قطاع الأعمال خلال عام 2026 وما بعده.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>خطة عمل الشراكة الاستراتيجية 2026</p>
+            <p style="margin-top: 15px; font-size: 1.1em; opacity: 0.9;">شركة شركاء الاعمال × شركة موبايلي</p>
+        </div>
+    </div>
+
+    <script>
+        // بيانات المبيعات
+        const salesData = {
+            labels: ['2023', '2024', '2025'],
+            values: [363548, 785086, 1836688],
+            growth: [0, 115.9, 134.0]
+        };
+
+        // إعدادات الرسم البياني
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: salesData.labels,
+                datasets: [
+                    {
+                        label: 'المبيعات السنوية',
+                        data: salesData.values,
+                        backgroundColor: [
+                            'rgba(0, 102, 204, 0.8)',
+                            'rgba(40, 167, 69, 0.8)',
+                            'rgba(40, 167, 69, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(0, 102, 204, 1)',
+                            'rgba(40, 167, 69, 1)',
+                            'rgba(40, 167, 69, 1)'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 8,
+                        borderSkipped: false,
+                    },
+                    {
+                        label: 'معدل النمو (%)',
+                        data: [0, 115.9, 134.0],
+                        type: 'line',
+                        borderColor: 'rgba(255, 193, 7, 1)',
+                        backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        yAxisID: 'y1',
+                        pointRadius: 6,
+                        pointBackgroundColor: 'rgba(255, 193, 7, 1)',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        align: 'center',
+                        rtl: true,
+                        labels: {
+                            font: {
+                                family: "'Cairo', sans-serif",
+                                size: 14,
+                                weight: '600'
+                            },
+                            color: '#212121',
+                            padding: 15,
+                            usePointStyle: true,
+                        }
+                    },
+                    tooltip: {
+                        rtl: true,
+                        textDirection: 'rtl',
+                        titleFont: {
+                            family: "'Cairo', sans-serif",
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        bodyFont: {
+                            family: "'Cairo', sans-serif",
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.datasetIndex === 0) {
+                                    label += new Intl.NumberFormat('ar-SA').format(context.parsed.y) + ' ريال';
+                                } else {
+                                    label += context.parsed.y.toFixed(1) + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: {
+                                family: "'Cairo', sans-serif",
+                                size: 13,
+                                weight: '600'
+                            },
+                            color: '#333'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        position: 'right',
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        },
+                        ticks: {
+                            font: {
+                                family: "'Cairo', sans-serif",
+                                size: 12
+                            },
+                            color: '#666',
+                            callback: function(value) {
+                                return new Intl.NumberFormat('ar-SA').format(value);
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'المبيعات (ريال)',
+                            font: {
+                                family: "'Cairo', sans-serif",
+                                size: 13,
+                                weight: '600'
+                            },
+                            color: '#0066cc'
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        grid: {
+                            drawOnChartArea: false
+                        },
+                        ticks: {
+                            font: {
+                                family: "'Cairo', sans-serif",
+                                size: 12
+                            },
+                            color: '#ffc107',
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'معدل النمو (%)',
+                            font: {
+                                family: "'Cairo', sans-serif",
+                                size: 13,
+                                weight: '600'
+                            },
+                            color: '#ffc107'
+                        }
+                    }
+                }
+            }
+        });
+
+        // بيانات المبيعات المستهدفة للعامين القادمين
+        const targetSalesData = {
+            labels: ['2026', '2027'],
+            values: [4000000, 5000000],
+            growth: [0, 25.0] // نمو 25% من 2026 إلى 2027
+        };
+
+        // إعدادات الرسم البياني للمبيعات المستهدفة
+        const ctxTarget = document.getElementById('targetSalesChart').getContext('2d');
+        
+        new Chart(ctxTarget, {
+            type: 'bar',
+            data: {
+                labels: targetSalesData.labels,
+                datasets: [
+                    {
+                        label: 'المبيعات المستهدفة',
+                        data: targetSalesData.values,
+                        backgroundColor: [
+                            'rgba(0, 102, 204, 0.8)',
+                            'rgba(40, 167, 69, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(0, 102, 204, 1)',
+                            'rgba(40, 167, 69, 1)'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 8,
+                        borderSkipped: false,
+                    },
+                    {
+                        label: 'معدل النمو (%)',
+                        data: [0, 25.0],
+                        type: 'line',
+                        borderColor: 'rgba(255, 193, 7, 1)',
+                        backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        yAxisID: 'y1',
+                        pointRadius: 6,
+                        pointBackgroundColor: 'rgba(255, 193, 7, 1)',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        align: 'center',
+                        rtl: true,
+                        labels: {
+                            font: {
+                                family: "'Cairo', sans-serif",
+                                size: 14,
+                                weight: '600'
+                            },
+                            color: '#212121',
+                            padding: 15,
+                            usePointStyle: true,
+                        }
+                    },
+                    tooltip: {
+                        rtl: true,
+                        textDirection: 'rtl',
+                        titleFont: {
+                            family: "'Cairo', sans-serif",
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        bodyFont: {
+                            family: "'Cairo', sans-serif",
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.datasetIndex === 0) {
+                                    label += new Intl.NumberFormat('ar-SA').format(context.parsed.y) + ' ريال';
+                                } else {
+                                    label += context.parsed.y.toFixed(1) + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: {
+                                family: "'Cairo', sans-serif",
+                                size: 13,
+                                weight: '600'
+                            },
+                            color: '#333'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        position: 'right',
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        },
+                        ticks: {
+                            font: {
+                                family: "'Cairo', sans-serif",
+                                size: 12
+                            },
+                            color: '#666',
+                            callback: function(value) {
+                                return new Intl.NumberFormat('ar-SA').format(value);
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'المبيعات (ريال)',
+                            font: {
+                                family: "'Cairo', sans-serif",
+                                size: 13,
+                                weight: '600'
+                            },
+                            color: '#0066cc'
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        grid: {
+                            drawOnChartArea: false
+                        },
+                        ticks: {
+                            font: {
+                                family: "'Cairo', sans-serif",
+                                size: 12
+                            },
+                            color: '#ffc107',
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'معدل النمو (%)',
+                            font: {
+                                family: "'Cairo', sans-serif",
+                                size: 13,
+                                weight: '600'
+                            },
+                            color: '#ffc107'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
